@@ -1,0 +1,195 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ShortCutGen.gd" type="Script" id=1]
+
+[sub_resource type="ImageTexture" id=1]
+
+[node name="Control" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+custom_constants/separation = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 984.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_top = 3.0
+margin_right = 118.0
+margin_bottom = 17.0
+text = "Application Name:"
+
+[node name="app_name" type="TextEdit" parent="VBoxContainer/HBoxContainer"]
+margin_left = 122.0
+margin_right = 984.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+context_menu_enabled = false
+shortcut_keys_enabled = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 50.0
+margin_right = 984.0
+margin_bottom = 70.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+margin_top = 3.0
+margin_right = 136.0
+margin_bottom = 17.0
+text = "Executable Directory:"
+
+[node name="exe_dir" type="TextEdit" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 140.0
+margin_right = 932.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+context_menu_enabled = false
+shortcut_keys_enabled = false
+
+[node name="exe_button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 936.0
+margin_right = 984.0
+margin_bottom = 20.0
+text = "OPEN"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 100.0
+margin_right = 984.0
+margin_bottom = 120.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
+margin_top = 3.0
+margin_right = 61.0
+margin_bottom = 17.0
+text = "App Icon:"
+
+[node name="ico_dir" type="TextEdit" parent="VBoxContainer/HBoxContainer4"]
+margin_left = 65.0
+margin_right = 932.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+context_menu_enabled = false
+shortcut_keys_enabled = false
+
+[node name="icon_button" type="Button" parent="VBoxContainer/HBoxContainer4"]
+margin_left = 936.0
+margin_right = 984.0
+margin_bottom = 20.0
+text = "OPEN"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 150.0
+margin_right = 984.0
+margin_bottom = 170.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer5"]
+margin_top = 3.0
+margin_right = 92.0
+margin_bottom = 17.0
+text = "Save Directory"
+
+[node name="save_dir" type="TextEdit" parent="VBoxContainer/HBoxContainer5"]
+margin_left = 96.0
+margin_right = 925.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+context_menu_enabled = false
+shortcut_keys_enabled = false
+
+[node name="save_button" type="Button" parent="VBoxContainer/HBoxContainer5"]
+margin_left = 929.0
+margin_right = 984.0
+margin_bottom = 20.0
+text = "SELECT"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 200.0
+margin_right = 984.0
+margin_bottom = 220.0
+alignment = 1
+
+[node name="register_btn" type="Button" parent="VBoxContainer/HBoxContainer3"]
+margin_left = 365.0
+margin_right = 505.0
+margin_bottom = 20.0
+text = "Register Application"
+
+[node name="create_btn" type="Button" parent="VBoxContainer/HBoxContainer3"]
+margin_left = 509.0
+margin_right = 619.0
+margin_bottom = 20.0
+text = "Create Shortcut"
+
+[node name="icon_preview" type="TextureRect" parent="VBoxContainer"]
+margin_top = 250.0
+margin_right = 984.0
+margin_bottom = 560.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 1 )
+
+[node name="exe_select_diag" type="FileDialog" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 20.0
+window_title = "Open a File"
+mode = 0
+access = 2
+current_dir = "/home"
+current_file = "home"
+current_path = "/home/home"
+
+[node name="icon_select_diag" type="FileDialog" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 20.0
+window_title = "Open a File"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.ico", "*.png", "*.jpg" )
+current_dir = "/home"
+current_file = "home"
+current_path = "/home/home"
+
+[node name="save_select_diag2" type="FileDialog" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 20.0
+window_title = "Open a Directory"
+mode = 2
+access = 2
+current_dir = "/home"
+current_path = "/home/"
+
+[node name="warning_diag" type="AcceptDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.0
+margin_top = -29.0
+margin_right = 152.0
+margin_bottom = 29.0
+dialog_text = "Error: Directory and/or Program name not set"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/exe_button" to="." method="_on_exe_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer4/icon_button" to="." method="_on_icon_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer5/save_button" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/register_btn" to="." method="_on_register_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/create_btn" to="." method="_on_create_btn_pressed"]
+[connection signal="file_selected" from="exe_select_diag" to="." method="_on_exe_select_diag_file_selected"]
+[connection signal="file_selected" from="icon_select_diag" to="." method="_on_icon_select_diag_file_selected"]
+[connection signal="dir_selected" from="save_select_diag2" to="." method="_on_save_select_diag2_dir_selected"]
