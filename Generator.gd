@@ -1,5 +1,8 @@
 extends Node
 var save_directory =""
+var ver = "1.0"
+var type = "Application"
+var terminal = "false"
 var directory = ""
 var icon_directory = ""
 var app_name = ""
@@ -13,9 +16,9 @@ func create_shortcut():
 		return
 	var desktopfile = "#Created with Linux Shortcut Maker by Chevifier\n"\
 	+"[Desktop Entry]\n"\
-	+"Version=1.0\n"\
-	+"Type=Application\n"\
-	+"Terminal=false\n"\
+	+"Version="+ver+"\n"\
+	+"Type="+type+"\n"\
+	+"Terminal="+terminal+"\n"\
 	+"Exec="+directory+"\n"\
 	+"Name="+app_name+"\n"\
 	+"Comment="+Comment+"\n"\
@@ -23,16 +26,16 @@ func create_shortcut():
 	+"\n"\
 	
 	var file = File.new()
-	file.open(save_directory+"/"+app_name+".desktop", File.WRITE)
+	var file_path = save_directory+"/"+app_name+".desktop"
+	file.open(file_path, File.WRITE)
 	file.store_string(desktopfile)
 	file.close()
-	#Clear entered info after file created
-	desktopfile = ""
-	directory = ""
-	app_name = ""
+	var e1 = OS.execute("gio",["set",file_path, "metadata::trusted", "true"])
+	var e2 = OS.execute("chmod",["a+x",file_path])
+	#TO Do report Errors
 	emit_signal("success")
 	
-
+#TO-DO Edit previously created shortcut
 func load():
 	var file = File.new()
 	file.open(directory+"/"+app_name+".desktop", File.READ)

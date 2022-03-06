@@ -56,8 +56,7 @@ func show_error():
 	$warning_diag.dialog_text = "Error: Directory and/or Program name not set"
 	$warning_diag.popup()
 func show_success():
-	$warning_diag.dialog_text = name_txt.text+  " shortcut created.\n"\
-		+ "Right Click file and allow it to run as a Program and allow launching"
+	$warning_diag.dialog_text = "SUCCESS\n"+name_txt.text+" shortcut created"
 	$warning_diag.popup()
 	
 func set_image(path):
