@@ -11,9 +11,11 @@ signal error; signal success
 
 func create_shortcut():
 	if directory == "" or app_name == "":
-		emit_signal("error")
-		print("ERROR Creating file")
+		emit_signal("error","Error: Directory and/or Program name not set")
 		return
+	var n = directory.find(" ")
+	if n > 0:
+		directory = "\""+ directory + "\""
 	var desktopfile = "#Created with Linux Shortcut Maker by Chevifier\n"\
 	+"[Desktop Entry]\n"\
 	+"Version="+ver+"\n"\
@@ -22,9 +24,8 @@ func create_shortcut():
 	+"Exec="+directory+"\n"\
 	+"Name="+app_name+"\n"\
 	+"Comment="+Comment+"\n"\
-	+"Icon="+icon_directory+"\n"\
-	+"\n"\
-	
+	+"Icon="+icon_directory+"\n"
+		
 	var file = File.new()
 	var file_path = save_directory+"/"+app_name+".desktop"
 	file.open(file_path, File.WRITE)
@@ -32,11 +33,20 @@ func create_shortcut():
 	file.close()
 	var e1 = OS.execute("gio",["set",file_path, "metadata::trusted", "true"])
 	var e2 = OS.execute("chmod",["a+x",file_path])
+	print("Trusted: "+str(e1) +"\nExecutable:" + str(e2))
+	register(file_path,app_name+".desktop")
 	#TO Do report Errors
 	emit_signal("success")
-	
+	print(desktopfile)
+
+func register(file,file_name):
+	var e1 = OS.execute("cp",["\""+file+"\"","\"/usr/share/applications/"+file_name+"\""])
+	print("Copy status: "+ str(e1))
+	#NOTE error 1 = failed
+
+
 #TO-DO Edit previously created shortcut
-func load():
+func load_shortcut():
 	var file = File.new()
 	file.open(directory+"/"+app_name+".desktop", File.READ)
 	var content = file.get_as_text()
