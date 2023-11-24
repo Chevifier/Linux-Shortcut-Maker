@@ -1,14 +1,16 @@
-# Linux-Shortcut-Maker
-Tool to quickly create application shortcuts in Linux-Ubuntu 
 
-Use this tool to create desktop files for Ubuntu
+# Linux Shortcut Maker
 
-Application Name - Specify the Name of the application
+Tool to quickly create application shortcuts ( desktop files ) on Ubuntu.
 
-Executable Directory - Directory of the main application file
+<br>
 
-App Icon - Directory of the applications icon
+| Input | Description
+|:-----:|:-----------
+| Application Name | Specify the name of the application
+| Executable Directory | Directory of the executable file
+| App Icon | Directory of the applications icon
+| Comment | Add a comment to the desktop file
+| Save Directory | Save location of the desktop file <br> Usually: `/<User>/Desktop`
 
-Comment - Add a comment to the desktop file
-
-Save Directory - Save location of the desktop file ,Commonly on the Desktop: "/user_name/Desktop"
+<br>
